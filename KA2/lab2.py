@@ -9,13 +9,15 @@ with open("in.txt") as file_in:
             tokens = file_in.readline().split(' ')
             mat_of_adj[i] = set()
             for token in tokens:
+                if(int(token) == 0):
+                    break
                 mat_of_adj[i].add(int(token) - 1)
     else:
         with open('out.txt','w') as file_out:
             file_out.write('N')
         exit(0)
 
-used = [0 for i in range(0,k)]
+used = [False for i in range(0,k)]
 saturation = [-1 for i in range(0,2*k)]
 
 def kuhn_algo(vrtx):
@@ -32,7 +34,7 @@ def kuhn_algo(vrtx):
 
 
 for i in range(0,k):
-    used = [0 for j in range(0,k)]
+    used = [False for j in range(0,k)]
     if(not kuhn_algo(i)):
         with open('out.txt', 'w') as file_out:
             file_out.write('N')
