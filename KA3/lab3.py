@@ -17,10 +17,10 @@ def fill_collection(tokens,collection,char):
         while(int(tokens[i]) != 0 and int(tokens[i+1]) != 0 and i <= tokens.__len__()):
             collection.append((int(tokens[i + 1]) - 1,(int(tokens[i]) - 1)))
             field[int(tokens[i+1]) - 1][int(tokens[i]) - 1] = char
-            i += 2
+            i += 3
 
 def cord_is_valid(x,y):
-    return x > 0 and y > 0 and x < 8 and y < 8
+    return x >= 0 and y >= 0 and x < 8 and y < 8
 
 def make_cord_sequence(x,y):
     yield (x + 1,y)
@@ -77,6 +77,9 @@ def merge(groups):
 
 black_possible_answers = merge(white_groups)
 white_possible_answers = merge(black_groups)
+
+black_possible_answers.sort(key=lambda x: x[1])
+white_possible_answers.sort(key = lambda x: x[1])
 
 for i in range(0,8):
     for j in range(0, 8):
